@@ -43,9 +43,9 @@ export function WorkflowNav({ workflows, onCreateWorkflow }: WorkflowNavProps) {
     <SidebarMenuItem key={workflow.id}>
       <SidebarMenuButton
         asChild
-        isActive={pathname === `/workflows/${workflow.id}`}
+        isActive={pathname === `/dashboard/workflows/${workflow.id}`}
       >
-        <Link to={`/workflows/${workflow.id}`}>
+        <Link to={`/dashboard/workflows/${workflow.id}`}>
           <span>{workflow.name}</span>
         </Link>
       </SidebarMenuButton>

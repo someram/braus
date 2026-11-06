@@ -33,7 +33,7 @@ export function AppSidebar({
     const token = await getToken()
     const workflow = await apiFetch<Workflow>(token, "/api/workflows", { method: "POST", body: JSON.stringify({ name }) })
     setWorkflows((current) => [workflow, ...current])
-    navigate(`/workflows/${workflow.id}`)
+    navigate(`/dashboard/workflows/${workflow.id}`)
   }
 
   return (

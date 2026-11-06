@@ -19,7 +19,7 @@ export function NewWorkflowButton() {
     startTransition(async () => {
       const token = await getToken()
       const workflow = await apiFetch<Workflow>(token, "/api/workflows", { method: "POST", body: JSON.stringify({ name: generateSlug() }) })
-      navigate(`/workflows/${workflow.id}`)
+      navigate(`/dashboard/workflows/${workflow.id}`)
     })
   }
 

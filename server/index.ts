@@ -79,8 +79,6 @@ app.post("/api/workflows/:id/run", route(async (req, res) => {
   const id = routeParam(req, "id")
   const graph = req.body?.graph
   if (!graph || !Array.isArray(graph.nodes) || !Array.isArray(graph.edges)) { res.status(400).send("Invalid workflow graph"); return }
-  const hasAgentNode = graph.nodes.some((node: { data?: { type?: string } }) => node.data?.type === "agent")
-  if (hasAgentNode && !auth.has({ plan: "pro" })) { res.status(403).send("The Agent node requires the Pro plan."); return }
   const problems = validateGraph(graph)
   if (problems.length) { res.status(400).send(problems.join(" ")); return }
   const workflow = await getWorkflow(auth.orgId!, id)
@@ -119,7 +117,6 @@ app.post("/api/liveblocks/users", route(async (req, res) => {
 app.get("/api/replays/:sessionId", route(async (req, res) => {
   const auth = authFor(req)
   const sessionId = routeParam(req, "sessionId")
-  if (!auth.has({ plan: "pro" })) { res.status(403).send("Pro plan required"); return }
   try {
     const replay = await browserbase.sessions.replays.retrieve(sessionId)
     const firstPage = replay.pages[0]

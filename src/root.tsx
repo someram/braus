@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react"
 import { Dashboard } from "./views/dashboard"
 import { LandingPage } from "./views/landing-page"
 import { WorkflowPage } from "./views/workflow-page"
-import { BillingPage } from "./views/billing-page"
 import { HomePage } from "./views/home-page"
 import "./views/auth-page.css"
 
@@ -78,7 +77,6 @@ export function App() {
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<HomePage />} />
             <Route path="workflows/:id" element={<WorkflowPage />} />
-            <Route path="billing" element={<BillingPage />} />
             <Route path="*" element={<Navigate to="dashboard" replace />} />
           </Route>
         </Route>
