@@ -9,6 +9,7 @@
     "dev:api": "tsx watch server/bootstrap.ts",
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/bootstrap.ts",
+    "dev:trigger": "bunx trigger.dev@latest dev",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
