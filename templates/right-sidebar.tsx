@@ -3,8 +3,8 @@
 import { useEffect, useState, useTransition } from "react"
 import { useAuth } from "@clerk/react"
 import { useNavigate } from "react-router-dom"
-import { useReactFlow, useStore } from "@xyflow/react"
-import { MoreHorizontal, Play, Square, Trash2 } from "lucide-react"
+import { useReactFlow, useStore, type Edge } from "@xyflow/react"
+import { MoreHorizontal, Play, Square, Trash2, Unlink } from "lucide-react"
 import { toast } from "sonner"
 
 import {
@@ -70,9 +70,34 @@ function FieldInput({ field, value, onChange }: { field: NodeField; value: strin
   return field.multiline ? <Textarea {...props} /> : <Input {...props} />
 }
 
-function Inspector({ node }: { node: StepNodeType | undefined }) {
-  const { updateNodeData } = useReactFlow<StepNodeType>()
-  if (!node) return <Section title="Editor"><p className="p-3 text-sm text-muted-foreground">No node selected</p></Section>
+function Inspector({ node, edge }: { node: StepNodeType | undefined; edge: Edge | undefined }) {
+  const { updateNodeData, deleteElements, getNode } = useReactFlow<StepNodeType>()
+  const connectedEdges = useStore((state) =>
+    node ? state.edges.filter((item) => item.source === node.id || item.target === node.id) : []
+  )
+  if (!node) {
+    if (edge) {
+      const source = getNode(edge.source)?.data.title ?? edge.source
+      const target = getNode(edge.target)?.data.title ?? edge.target
+      return (
+        <Section title="Connection">
+          <div className="flex flex-col gap-3 p-3">
+            <p className="text-xs text-muted-foreground">{source} → {target}</p>
+            <Button
+              variant="destructive"
+              size="sm"
+              aria-label={`Remove connection from ${source} to ${target}`}
+              onClick={() => void deleteElements({ edges: [{ id: edge.id }] })}
+            >
+              <Unlink />
+              Remove connection
+            </Button>
+          </div>
+        </Section>
+      )
+    }
+    return <Section title="Editor"><p className="p-3 text-sm text-muted-foreground">Select one node or connection to edit it</p></Section>
+  }
 
   const { type, title, values } = node.data
   const def: NodeDefinition = nodeRegistry[type]
@@ -85,6 +110,29 @@ function Inspector({ node }: { node: StepNodeType | undefined }) {
             <FieldInput field={field} value={values[field.key] ?? ""} onChange={(value) => updateNodeData(node.id, { values: { ...values, [field.key]: value } })} />
           </div>
         ))}
+        {connectedEdges.length > 0 && (
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-xs">Wires</Label>
+            <div className="flex flex-col gap-1">
+              {connectedEdges.map((connectedEdge) => {
+                const source = getNode(connectedEdge.source)?.data.title ?? connectedEdge.source
+                const target = getNode(connectedEdge.target)?.data.title ?? connectedEdge.target
+                return (
+                  <div key={connectedEdge.id} className="flex items-center justify-between gap-2 rounded-md border border-border px-2 py-1.5">
+                    <span className="min-w-0 truncate text-xs">{source} → {target}</span>
+                    <Button type="button" size="icon" variant="ghost" aria-label={`Remove connection from ${source} to ${target}`} title="Remove connection" onClick={() => void deleteElements({ edges: [{ id: connectedEdge.id }] })}>
+                      <Unlink />
+                    </Button>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+        <Button type="button" size="sm" variant="destructive" onClick={() => void deleteElements({ nodes: [{ id: node.id }] })}>
+          <Trash2 />
+          Delete node
+        </Button>
       </div>
     </Section>
   )
@@ -189,11 +237,14 @@ function RunButton({ workflowId }: { workflowId: string }) {
 
 export function RightSidebar({ workflowId }: { workflowId: string }) {
   const [tab, setTab] = useState("toolbar")
-  const selected = useStore((s) => s.nodes.find((node) => node.selected)) as StepNodeType | undefined
+  const selectedNodes = useStore((state) => state.nodes.filter((node) => node.selected)) as StepNodeType[]
+  const selectedEdges = useStore((state) => state.edges.filter((edge) => edge.selected))
+  const selected = selectedNodes.length === 1 ? selectedNodes[0] : undefined
+  const selectedEdge = !selected && selectedEdges.length === 1 ? selectedEdges[0] : undefined
 
   useEffect(() => {
-    if (selected) setTab("editor")
-  }, [selected?.id])
+    if (selected || selectedEdge) setTab("editor")
+  }, [selected?.id, selectedEdge?.id])
 
   return (
     <ResizablePanel className="bg-background" defaultSize="16rem" minSize="14rem" maxSize="36rem" groupResizeBehavior="preserve-pixel-size">
@@ -204,7 +255,7 @@ export function RightSidebar({ workflowId }: { workflowId: string }) {
           <TabsTrigger value="editor" className="flex-none rounded-sm data-active:bg-accent! data-active:text-accent-foreground! data-active:shadow-none! dark:data-active:border-transparent!">Editor</TabsTrigger>
         </TabsList>
         <TabsContent value="toolbar" className="flex min-h-0 flex-col"><Palette /></TabsContent>
-        <TabsContent value="editor" className="flex min-h-0 flex-col"><Inspector key={selected?.id} node={selected} /></TabsContent>
+        <TabsContent value="editor" className="flex min-h-0 flex-col"><Inspector key={selected?.id ?? selectedEdge?.id ?? "empty"} node={selected} edge={selectedEdge} /></TabsContent>
       </Tabs>
     </ResizablePanel>
   )
