@@ -115,3 +115,51 @@
 @media (prefers-reduced-motion: reduce) {
   .landing-page *, .landing-page *::before, .landing-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* White editorial palette */
+.landing-page {
+  --paper: #ffffff;
+  --paper-deep: #f7f8fa;
+  --ink: #17191c;
+  --ink-soft: #525866;
+  --line: #e3e6eb;
+  --rust: #292d33;
+  --sage: #68717d;
+  background: #ffffff;
+}
+.landing-page a:focus-visible { outline-color: #292d33; }
+.brand-mark span, .eyebrow-rule, .kicker-rule, .status-dot { background: #5b6470; }
+.brand-period, .hero-copy h1 em, .manifesto h2 em, .capabilities-heading h2 em, .method-layout h2 em, .cta-main h2 em,
+.section-kicker > span:first-child, .capability-top, .method-step > span { color: #292d33; }
+.nav-cta, .button-primary { background: #17191c; color: #ffffff !important; }
+.nav-cta:hover, .button-primary:hover { background: #454b54; }
+.hero-art::before { border-color: #e3e6eb; }
+.browser-window { border-color: #dfe3e8; background: #ffffff; }
+.browser-chrome { border-color: #e8eaee; background: #f8f9fb; }
+.address-bar, .browser-rail { background: #f4f5f7; }
+.browser-rail { border-color: #e8eaee; }
+.browser-rail i { border-color: #aeb5bf; }
+.browser-rail .rail-logo { background: #59616d; }
+.mock-image { background: #e9ebee; }
+.mock-image::before { background: linear-gradient(145deg, #eceef1 0 49%, #d9dde2 50% 100%); }
+.sun-disc { background: #b9c0c9; }
+.still-life div { background: #f7f8fa; box-shadow: inset -10px -4px 0 #d9dde2; }
+.still-life span { background: #c7ccd3; }
+.still-life i { background: #89919b; }
+.inspect-outline { border-color: #59616d; }
+.inspect-cursor { color: #292d33; }
+.inspect-cursor span { background: #292d33; }
+.run-card { background: #ffffff; border-color: #e3e6eb; }
+.run-check { background: #eef0f3; color: #424a55; }
+.method-strip { background: #f7f8fa; }
+.method-steps, .method-step, .manifesto-bottom { border-color: #e3e6eb; }
+.closing-cta { background: #f7f8fa; color: #17191c; }
+.cta-overline { color: #525866; }
+.cta-overline svg, .run-arrow, .scroll-cue svg { color: #525866; }
+.cta-main h2 em { color: #525866; }
+.button-primary-light { background: #17191c; color: #ffffff !important; }
+.button-primary-light:hover { background: #454b54; color: #ffffff !important; }
+.cta-footer { border-color: #dfe3e8; color: #525866; }
+@media (prefers-reduced-motion: reduce) {
+  .landing-page *, .landing-page *::before, .landing-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

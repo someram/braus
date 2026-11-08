@@ -112,3 +112,26 @@
 @media (prefers-reduced-motion: reduce) {
   .auth-screen *, .auth-screen *::before, .auth-screen *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* White, neutral authentication surfaces */
+.auth-screen {
+  --auth-paper: #ffffff;
+  --auth-ink: #17191c;
+  --auth-rust: #292d33;
+  background: #ffffff;
+}
+.auth-screen::before, .auth-screen::after { display: none; }
+.auth-home-link { color: #525866; }
+.auth-home-link:hover { color: #17191c; }
+.auth-home-link:focus-visible, .auth-brand:focus-visible { outline-color: #292d33; }
+.auth-brand-mark span { background: #59616d; }
+.auth-brand-period { color: #292d33; }
+.auth-clerk-card { border-color: #e3e6eb !important; border-radius: 10px !important; background: #ffffff !important; box-shadow: 0 24px 70px #17191c10, 0 2px 8px #17191c08 !important; }
+.auth-clerk-title { color: #17191c !important; }
+.auth-clerk-subtitle { color: #525866 !important; }
+.auth-clerk-primary { background: #17191c !important; color: #ffffff !important; }
+.auth-clerk-primary:hover { background: #454b54 !important; }
+.auth-clerk-input { background: #ffffff !important; }
+.auth-clerk-social { background: #f7f8fa !important; }
+.auth-clerk-link { color: #292d33 !important; }
+.auth-caption { color: #68717d; }
