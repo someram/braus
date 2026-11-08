@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import { useAuth } from "@clerk/react"
 import { useNavigate } from "react-router-dom"
 import { useReactFlow, useStore } from "@xyflow/react"
@@ -396,15 +396,11 @@ function RunButton({ workflowId }: { workflowId: string }) {
 export function RightSidebar({ workflowId }: { workflowId: string }) {
   const [tab, setTab] = useState("toolbar")
 
-  // TODO: read the currently selected node from React Flow.
   const selected = useStore((s) => s.nodes.find((n) => n.selected)) as StepNodeType | undefined
 
-  // TODO: auto-switch to the Editor tab when the selection changes.
-  const [prevSelectedId, setPrevSelectedId] = useState(selected?.id)
-  if (selected && selected.id !== prevSelectedId) {
-    setPrevSelectedId(selected.id)
-    setTab("editor")
-  }
+  useEffect(() => {
+    if (selected) setTab("editor")
+  }, [selected?.id])
 
   return (
     <ResizablePanel
