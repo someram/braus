@@ -71,8 +71,8 @@ export function App() {
       <Route path="/sign-in/*" element={<AuthPage><SignIn routing="path" path="/sign-in" appearance={authAppearance} /></AuthPage>} />
       <Route path="/sign-up/*" element={<AuthPage><SignUp routing="path" path="/sign-up" appearance={authAppearance} /></AuthPage>} />
       <Route path="/" element={<LandingPage />} />
+      <Route path="/choose-organization" element={<div className="flex min-h-svh items-center justify-center"><TaskChooseOrganization redirectUrlComplete="/dashboard" /></div>} />
       <Route element={<AuthenticationGate />}>
-        <Route path="/choose-organization" element={<div className="flex min-h-svh items-center justify-center"><TaskChooseOrganization redirectUrlComplete="/" /></div>} />
         <Route element={<OrganizationGate />}>
           <Route path="dashboard" element={<Dashboard />}>
             <Route index element={<HomePage />} />
