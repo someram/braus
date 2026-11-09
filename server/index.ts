@@ -1,5 +1,4 @@
 import express from "express"
-import * as Sentry from "@sentry/node"
 import { clerkClient, clerkMiddleware, getAuth } from "@clerk/express"
 import { auth as triggerAuth, runs, tasks } from "@trigger.dev/sdk"
 import { NotFoundError } from "@browserbasehq/sdk"
@@ -11,7 +10,6 @@ import type { runWorkflowTask } from "../features/workflows/tasks/run-workflow"
 
 const app = express()
 const port = Number(process.env.PORT ?? 3001)
-Sentry.init({ dsn: process.env.SENTRY_DSN })
 app.use(express.json({ limit: "2mb" }))
 app.use(clerkMiddleware({
   publishableKey: process.env.CLERK_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
@@ -130,7 +128,6 @@ app.get("/api/replays/:sessionId", route(async (req, res) => {
 }))
 
 app.use((error: Error & { status?: number }, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  Sentry.captureException(error)
   res.status(error.status ?? 500).send(error.status ? error.message : "Internal server error")
 })
 

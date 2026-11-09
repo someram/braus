@@ -6,20 +6,11 @@ import { shadcn } from "@clerk/ui/themes"
 import { ThemeProvider } from "@/components/theme-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "@/components/ui/sonner"
-import * as Sentry from "@sentry/react"
 import { App } from "./root"
 import "@clerk/ui/themes/shadcn.css"
 import "@/app/globals.css"
 
 const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY ?? import.meta.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-
-Sentry.init({
-  dsn: import.meta.env.VITE_SENTRY_DSN ?? import.meta.env.NEXT_PUBLIC_SENTRY_DSN,
-  tracesSampleRate: import.meta.env.DEV ? 1 : 0.1,
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1,
-  integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
-})
 
 if (!publishableKey) {
   throw new Error("VITE_CLERK_PUBLISHABLE_KEY is not set")
@@ -37,9 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <ThemeProvider>
           <TooltipProvider>
-            <Sentry.ErrorBoundary fallback={<main className="p-8 text-sm text-destructive">The application hit an unexpected error. Reload the page to try again.</main>}>
-              <App />
-            </Sentry.ErrorBoundary>
+            <App />
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
