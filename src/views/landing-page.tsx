@@ -69,10 +69,6 @@ export function LandingPage() {
             <span className="brand-mark"><span /></span>
             <span>braus<span className="brand-period">.</span></span>
           </Link>
-          <nav className="landing-links" aria-label="Main navigation">
-            <a href="#capabilities">Platform</a>
-            <a href="#method">How it works</a>
-          </nav>
           <div className="landing-actions">
             <ThemeToggle className="landing-theme-toggle" />
             <Link className="nav-signin" to="/sign-in">Sign in</Link>
