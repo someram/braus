@@ -16,6 +16,7 @@ import {
   Terminal,
   Workflow,
 } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 import "./landing-page.css"
 
 const capabilities = [
@@ -72,6 +73,7 @@ export function LandingPage() {
             <a href="#method">How it works</a>
           </nav>
           <div className="landing-actions">
+            <ThemeToggle className="landing-theme-toggle" />
             <Link className="nav-signin" to="/sign-in">Sign in</Link>
             <Link className="nav-cta" to="/sign-up">Get started <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>

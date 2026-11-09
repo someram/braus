@@ -116,6 +116,69 @@
   .landing-page *, .landing-page *::before, .landing-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
+/* Keep the browser mockup intentionally light; the surrounding page follows the app theme. */
+.dark .landing-page {
+  --paper: #15171a;
+  --paper-deep: #1c1f23;
+  --ink: #f1f3f5;
+  --ink-soft: #b3bac4;
+  --line: #353a42;
+  --rust: #a8c7e8;
+  --sage: #91a48e;
+  background: var(--paper);
+  color: var(--ink);
+}
+.dark .landing-page a:focus-visible { outline-color: var(--rust); }
+.dark .landing-page .hero-description,
+.dark .landing-page .manifesto-aside p,
+.dark .landing-page .capabilities-heading > p,
+.dark .landing-page .capability > p,
+.dark .landing-page .method-step p { color: #c0c5cc; }
+.dark .landing-page .hero-footnote,
+.dark .landing-page .art-label,
+.dark .landing-page .art-index,
+.dark .landing-page .scroll-cue,
+.dark .landing-page .manifesto-bottom,
+.dark .landing-page .capability-detail,
+.dark .landing-page .landing-footer { color: #a5adb8 !important; }
+.dark .landing-page .brand-mark,
+.dark .landing-page .hero-art::before,
+.dark .landing-page .capability-grid,
+.dark .landing-page .capability,
+.dark .landing-page .method-steps,
+.dark .landing-page .method-step,
+.dark .landing-page .manifesto-bottom { border-color: var(--line); }
+.dark .landing-page .method-strip { background: #202328; }
+.dark .landing-page .closing-cta { background: #24282e; color: var(--ink); }
+.dark .landing-page .cta-overline { color: #b8c9dc; }
+.dark .landing-page .cta-overline svg,
+.dark .landing-page .cta-main h2 em { color: var(--rust); }
+.dark .landing-page .cta-footer { border-color: #454b54; color: #b3bac4; }
+.dark .landing-page .nav-cta,
+.dark .landing-page .button-primary,
+.dark .landing-page .button-primary-light { background: #e6e9ed; color: #17191c !important; }
+.dark .landing-page .nav-cta:hover,
+.dark .landing-page .button-primary:hover,
+.dark .landing-page .button-primary-light:hover { background: #c7cdd5; }
+.dark .landing-page .scroll-cue svg,
+.dark .landing-page .run-arrow { color: var(--rust); }
+.dark .landing-page .brand-period,
+.dark .landing-page .hero-copy h1 em,
+.dark .landing-page .manifesto h2 em,
+.dark .landing-page .capabilities-heading h2 em,
+.dark .landing-page .method-layout h2 em,
+.dark .landing-page .cta-main h2 em,
+.dark .landing-page .section-kicker > span:first-child,
+.dark .landing-page .capability-top,
+.dark .landing-page .method-step > span,
+.dark .landing-page .inspect-cursor { color: var(--rust); }
+.dark .landing-page .inspect-cursor span {
+  background: var(--rust);
+  color: #15171a;
+}
+.dark .landing-page .method-step > svg { color: #b8c9dc; }
+.landing-theme-toggle { color: inherit; }
+
 /* White editorial palette */
 .landing-page {
   --paper: #ffffff;

@@ -14,6 +14,7 @@ import {
 import { WorkflowNav } from "@/features/workflows/components/workflow-nav"
 import type { Workflow } from "@/lib/db/schema"
 import { apiFetch } from "@/src/lib/api"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function AppSidebar({
   ...props
@@ -60,6 +61,7 @@ export function AppSidebar({
         />
       </SidebarContent>
       <SidebarFooter className="group-data-[collapsible=icon]:items-center">
+        <ThemeToggle className="group-data-[collapsible=icon]:mx-auto" />
         <UserButton
           appearance={{
             elements: {

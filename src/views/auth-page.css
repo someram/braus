@@ -113,6 +113,41 @@
   .auth-screen *, .auth-screen *::before, .auth-screen *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
 
+.dark .auth-screen {
+  --auth-paper: #15171a;
+  --auth-ink: #f1f3f5;
+  --auth-rust: #d08568;
+  background: radial-gradient(ellipse at 16% 24%, #30372f 0, transparent 34%),
+    radial-gradient(ellipse at 88% 80%, #3b2c27 0, transparent 37%), var(--auth-paper);
+  color: var(--auth-ink);
+}
+.dark .auth-screen::before,
+.dark .auth-screen::after { display: block; }
+.dark .auth-home-link,
+.dark .auth-clerk-subtitle,
+.dark .auth-caption { color: #aeb5bf; }
+.dark .auth-home-link:hover,
+.dark .auth-clerk-link { color: var(--auth-rust) !important; }
+.dark .auth-brand-mark { border-color: var(--auth-ink); }
+.dark .auth-brand-mark span { background: var(--auth-rust); }
+.dark .auth-brand-period { color: var(--auth-rust); }
+.dark .auth-clerk-card {
+  border-color: #373c44 !important;
+  background: #202328 !important;
+  box-shadow: 0 24px 70px #0008, 0 2px 8px #0005 !important;
+}
+.dark .auth-clerk-title { color: #f1f3f5 !important; }
+.dark .auth-clerk-input { background: #17191c !important; }
+.dark .auth-clerk-social { background: #292d33 !important; }
+.dark .auth-clerk-primary { background: #d08568 !important; color: #17191c !important; }
+.dark .auth-clerk-primary:hover { background: #e09a7d !important; }
+.dark .auth-theme-toggle { color: #f1f3f5; }
+.auth-theme-toggle { position: absolute; top: 78px; right: clamp(22px, 6vw, 86px); z-index: 2; }
+
+@media (max-width: 520px) {
+  .auth-theme-toggle { top: 64px; right: 13px; }
+}
+
 /* White, neutral authentication surfaces */
 .auth-screen {
   --auth-paper: #ffffff;

@@ -2,6 +2,7 @@ import { Navigate, Outlet, Route, Routes, Link } from "react-router-dom"
 import type { ReactNode } from "react"
 import { SignIn, SignUp, TaskChooseOrganization, useAuth } from "@clerk/react"
 import { ArrowLeft } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Dashboard } from "./views/dashboard"
 import { LandingPage } from "./views/landing-page"
 import { WorkflowPage } from "./views/workflow-page"
@@ -10,17 +11,17 @@ import "./views/auth-page.css"
 
 const authAppearance = {
   variables: {
-    colorPrimary: "#17191c",
-    colorPrimaryForeground: "#ffffff",
-    colorBackground: "#ffffff",
-    colorForeground: "#17191c",
-    colorMutedForeground: "#525866",
-    colorMuted: "#f1f2f4",
-    colorInput: "#ffffff",
-    colorInputForeground: "#17191c",
-    colorBorder: "#e3e6eb",
-    colorRing: "#59616d",
-    colorNeutral: "#343a40",
+    colorPrimary: "var(--primary)",
+    colorPrimaryForeground: "var(--primary-foreground)",
+    colorBackground: "var(--background)",
+    colorForeground: "var(--foreground)",
+    colorMutedForeground: "var(--muted-foreground)",
+    colorMuted: "var(--muted)",
+    colorInput: "var(--background)",
+    colorInputForeground: "var(--foreground)",
+    colorBorder: "var(--border)",
+    colorRing: "var(--ring)",
+    colorNeutral: "var(--foreground)",
     fontFamily: 'Arial, "Helvetica Neue", sans-serif',
     fontFamilyButtons: 'Arial, "Helvetica Neue", sans-serif',
     borderRadius: "0.3rem",
@@ -46,6 +47,7 @@ function AuthPage({ children }: { children: ReactNode }) {
         <span>braus<span className="auth-brand-period">.</span></span>
       </Link>
       <Link className="auth-home-link" to="/"><ArrowLeft size={14} aria-hidden="true" /> Back to home</Link>
+      <ThemeToggle className="auth-theme-toggle" />
       <div className="auth-card-wrap">{children}</div>
       <div className="auth-caption">BROWSER AUTOMATION, RECONSIDERED</div>
     </main>
@@ -71,7 +73,7 @@ export function App() {
       <Route path="/sign-in/*" element={<AuthPage><SignIn routing="path" path="/sign-in" appearance={authAppearance} /></AuthPage>} />
       <Route path="/sign-up/*" element={<AuthPage><SignUp routing="path" path="/sign-up" appearance={authAppearance} /></AuthPage>} />
       <Route path="/" element={<LandingPage />} />
-      <Route path="/choose-organization" element={<div className="flex min-h-svh items-center justify-center"><TaskChooseOrganization redirectUrlComplete="/dashboard" /></div>} />
+      <Route path="/choose-organization" element={<div className="relative flex min-h-svh items-center justify-center bg-background text-foreground"><ThemeToggle className="absolute top-5 right-5 z-10" /><TaskChooseOrganization redirectUrlComplete="/dashboard" /></div>} />
       <Route element={<AuthenticationGate />}>
         <Route element={<OrganizationGate />}>
           <Route path="dashboard" element={<Dashboard />}>
