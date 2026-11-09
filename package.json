@@ -10,6 +10,7 @@
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/bootstrap.ts",
     "dev:trigger": "bunx trigger.dev@latest dev",
+    "deploy:trigger": "npx trigger.dev@latest deploy --env prod",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
