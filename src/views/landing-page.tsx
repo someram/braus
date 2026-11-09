@@ -4,13 +4,14 @@ import { useAuth } from "@clerk/react"
 import {
   ArrowDownRight,
   ArrowRight,
+  Bot,
   Braces,
-  Check,
   ChevronRight,
   Command,
   Eye,
+  Globe,
+  Mail,
   MousePointer2,
-  PanelTop,
   Play,
   Sparkles,
   Terminal,
@@ -92,32 +93,18 @@ export function LandingPage() {
           <div className="hero-footnote"><span className="status-dot" /> Built on Stagehand <span className="footnote-divider">·</span> Made for developers</div>
         </div>
 
-        <div className="hero-art" aria-label="Illustration of a browser automation workflow" role="img">
-          <div className="art-label"><span>FIG. 01</span><span>A browser, at work</span></div>
-          <div className="browser-window">
-            <div className="browser-chrome">
-              <div className="window-dots"><i /><i /><i /></div>
-              <div className="address-bar"><PanelTop size={12} aria-hidden="true" /><span>example.com / listings</span></div>
-              <div className="chrome-menu"><span /><span /><span /></div>
+        <div className="hero-art" aria-label="Workflow running: Start, Open URL, Agent, Send Email" role="img">
+          <div className="workflow-canvas">
+            <div className="workflow-track" aria-hidden="true">
+              <span className="workflow-link workflow-link-one" />
+              <span className="workflow-link workflow-link-two" />
+              <span className="workflow-link workflow-link-three" />
             </div>
-            <div className="browser-body">
-              <aside className="browser-rail"><span className="rail-logo" /><i /><i /><i /><i /></aside>
-              <div className="mock-page">
-                <div className="mock-topline"><span>FIELDNOTES <span className="mock-red">/ JOURNAL</span></span><span>ISSUE 08　 ·　 SPRING</span></div>
-                <div className="mock-title">Objects for<br />a slower day.</div>
-                <div className="mock-image"><div className="sun-disc" /><div className="still-life"><div /><span /><i /></div><span className="image-caption">STUDY NO. 014 — CERAMIC, 2024</span></div>
-                <div className="mock-row"><span>01 — VESSELS</span><span>Hand-thrown stoneware, made to be used.</span><span>$48.00</span></div>
-                <div className="mock-row muted-row"><span>02 — LINEN</span><span>Everyday cloth, woven in small batches.</span><span>$32.00</span></div>
-              </div>
-            </div>
-            <div className="inspect-cursor"><MousePointer2 size={17} fill="currentColor" aria-hidden="true" /><span>find the ceramic vessels</span></div>
-            <div className="inspect-outline" />
+            <div className="workflow-node workflow-node-one"><span className="workflow-icon workflow-icon-start"><Play size={15} fill="currentColor" aria-hidden="true" /></span><span className="workflow-title">Start</span></div>
+            <div className="workflow-node workflow-node-two"><span className="workflow-icon workflow-icon-url"><Globe size={16} aria-hidden="true" /></span><span className="workflow-title">Open URL</span></div>
+            <div className="workflow-node workflow-node-three"><span className="workflow-icon workflow-icon-agent"><Bot size={16} aria-hidden="true" /></span><span className="workflow-title">Agent</span></div>
+            <div className="workflow-node workflow-node-four"><span className="workflow-icon workflow-icon-email"><Mail size={16} aria-hidden="true" /></span><span className="workflow-title">Send Email</span></div>
           </div>
-          <div className="run-card">
-            <div className="run-card-head"><span><span className="status-dot" /> RUN COMPLETE</span><span>00:04.82</span></div>
-            <div className="run-card-body"><div className="run-check"><Check size={14} aria-hidden="true" /></div><div><strong>3 items found</strong><small>Structured data · JSON</small></div><ArrowDownRight className="run-arrow" size={17} aria-hidden="true" /></div>
-          </div>
-          <div className="art-index">BR / 001</div>
         </div>
         <a href="#capabilities" className="scroll-cue"><span>SCROLL TO EXPLORE</span><ArrowDownRight size={14} aria-hidden="true" /></a>
       </section>
