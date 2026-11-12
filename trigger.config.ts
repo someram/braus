@@ -2,7 +2,7 @@ import { defineConfig } from "@trigger.dev/sdk";
 import { esbuildPlugin } from "@trigger.dev/build/extensions";
 
 export default defineConfig({
-  project: "proj_mpzmwfbmrzpgrtdldjzj",
+  project: "proj_uekuqmoewzfapxuokjup",
   runtime: "node",
   logLevel: "log",
   // The max compute seconds a task is allowed to run. If the task run exceeds this duration, it will be stopped.
