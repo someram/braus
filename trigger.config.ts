@@ -1,9 +1,8 @@
 import { defineConfig } from "@trigger.dev/sdk";
-import { esbuildPlugin } from "@trigger.dev/build/extensions";
 
 export default defineConfig({
   project: "proj_uekuqmoewzfapxuokjup",
-  runtime: "node",
+  runtime: "node-24",
   logLevel: "log",
   // The max compute seconds a task is allowed to run. If the task run exceeds this duration, it will be stopped.
   // You can override this on an individual task.
@@ -19,8 +18,5 @@ export default defineConfig({
       randomize: true,
     },
   },
-  dirs: ["features"],
-  build: {
-    extensions: [],
-  },
+  dirs: ["trigger"],
 });
